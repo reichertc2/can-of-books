@@ -17,9 +17,9 @@ This is the front end for the collaborative project on Can of Books. It was buil
 * Bootstrap
 * Axios
 * ([Front-End Repository](https://github.com/reichertc2/can-of-books)
-* ([Front-End Deployed Site]()
-* ([Back-End Repository]()
-* ([Back-End Deployed Site]()
+* ([Front-End Deployed Site](https://reichertc2-can-of-books.netlify.app/)
+* ([Back-End Repository](https://github.com/AngelaDzodzomenyo/can-of-books-backend.git)
+* ([Back-End Deployed Site](https://can-of-books-backend01.herokuapp.com/)
 * ([Trello Board](https://trello.com/c/cRVgbD8L/5-1-set-up-your-repositories))
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
@@ -69,9 +69,9 @@ This is the front end for the collaborative project on Can of Books. It was buil
 
 1. Name of feature: Set up your repositories
 * Estimate of time needed to complete: 45 minutes
-<!-- * Start time: 2230
-* Finish time: 2335
-* Actual time needed to complete: 1 hour 5 minutes -->
+* Start time: 1530
+* Finish time: 1614
+* Actual time needed to complete: 44 minutes
 1. Name of feature:  Storage: As a user, I'd like my books to persist, so that whenever I make changes, I can see the my full list of best books.
 <!-- * Estimate of time needed to complete: 45 minutes
 * Start time: 2230
