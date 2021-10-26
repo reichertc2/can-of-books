@@ -1,17 +1,35 @@
 import React from 'react';
+import axios from 'axios';
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       books: []
-    }
+    };
   }
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
+  componentDidMount (){
+    this.getBooks;
+  }
+
+  getBooks = async () => {
+    try {
+      let booksAPI = await axios.get(`http://localhost:3001/book`);
+      this.setState({
+        books: booksAPI
+      });
+      console.log('BestBooks state',this.state);
+    }
+    catch (error){
+      console.log(`There was an error ${error.message}`);
+    }
+  }
+
 
   render() {
-
+    console.log('this is state on BestBooks.js',this.state);
     /* TODO: render user's books in a Carousel */
 
     return (
@@ -24,7 +42,7 @@ class BestBooks extends React.Component {
           <h3>No Books Found :(</h3>
         )}
       </>
-    )
+    );
   }
 }
 
