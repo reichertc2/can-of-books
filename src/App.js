@@ -8,6 +8,7 @@ import {
   Route
 } from 'react-router-dom';
 import Main from './Components/Main.js';
+import Profile from './Components/Profile.js';
 
 class App extends React.Component {
 
@@ -39,6 +40,9 @@ class App extends React.Component {
             <Route exact path="/">
               <Main />
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+            </Route>
+            <Route exact path="/profile">
+              <Profile/>
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>

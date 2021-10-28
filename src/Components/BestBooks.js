@@ -19,7 +19,7 @@ class BestBooks extends React.Component {
 
   getBooks = async () => {
     try {
-      let booksAPI = await (await axios.get(`http://localhost:3001/book`)).data;
+      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}book`)).data;
       console.log(booksAPI);
       this.setState({
         books: booksAPI,
@@ -40,7 +40,7 @@ class BestBooks extends React.Component {
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        {this.state.showBooks && <Books books={this.state.books} /> }
+        {this.state.showBooks ? <Books books={this.state.books} /> : <h3>Books not found.</h3>} 
       </>
     );
   }
