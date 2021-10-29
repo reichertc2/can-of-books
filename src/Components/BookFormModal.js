@@ -18,13 +18,16 @@ class BookFormModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     console.log(this.state.title);
     this.props.onCreate({
+
       title: this.state.title,
       description: this.state.description,
       status: this.state.status,
-      email: this.state.email,
-    });
+      email: this.state.email
+    };
+    this.props.onCreate(createdBook);
   }
 
   render() {

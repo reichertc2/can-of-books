@@ -19,12 +19,16 @@ class BestBooks extends React.Component {
 
 
 
+
   render() {
+
     /* TODO: render user's books in a Carousel */
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+
         {this.props.showBooks ? <Books books={this.props.books} deleteBook={this.props.deleteBook} /> : <h3>Books not found.</h3>}
+
       </>
     );
   }
