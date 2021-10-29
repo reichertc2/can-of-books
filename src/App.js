@@ -7,9 +7,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Main from './Components/Main.js';
+// import Main from './Components/Main.js';
 import Profile from './Components/Profile.js';
 import axios from 'axios';
+import Main from './Components/Main.js';
+
+
 
 class App extends React.Component {
 
@@ -89,10 +92,16 @@ class App extends React.Component {
             onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-
-              <BestBooks newBook={this.state.newBook} books={this.state.books} showBooks={this.state.showBooks} getBooks={this.getBooks} deleteBook={this.deleteBook} />
-              <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
-
+              <Main
+                newBook={this.state.newBook}
+                books={this.state.books}
+                showBooks={this.state.showBooks}
+                getBooks={this.getBooks}
+                deleteBook={this.deleteBook}
+                handleClose={this.handleClose}
+                handleShow={this.handleShow}
+                showModal={this.state.showModal}
+                onCreate={this.handleCreate} />
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
