@@ -1,6 +1,6 @@
 # Can of Books
 
-**Author**: Angela Dzodzomenyno & Chris Reichert
+**Author**: Angela Dzodzomenyo & Chris Reichert
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
@@ -21,6 +21,7 @@ This is the front end for the collaborative project on Can of Books. It was buil
 * ([Back-End Repository](https://github.com/AngelaDzodzomenyo/can-of-books-backend.git)
 * ([Back-End Deployed Site](https://can-of-books-backend01.herokuapp.com/)
 * ([Trello Board](https://trello.com/c/cRVgbD8L/5-1-set-up-your-repositories))
+* ([Color Pallette](https://coolors.co/db2b39-29335c-f3a712-f0cea0-534d41))
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log

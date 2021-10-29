@@ -32,7 +32,7 @@ class BookFormModal extends React.Component {
   render() {
     return (
       <>
-        <Button onClick={this.props.handleShow}>
+        <Button style={{ backgroundColor: '#534d41' , border: '1px solid transparent', display:'inline-block'}} onClick={this.props.handleShow}>
           Add a book
         </Button>
         <Modal show={this.props.showModal} style={{ color: 'black' }}>
