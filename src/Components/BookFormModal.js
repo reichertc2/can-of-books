@@ -18,8 +18,10 @@ class BookFormModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('handlesubmit log', this.state);
-    let createdBook = {
+
+    console.log(this.state.title);
+    this.props.onCreate({
+
       title: this.state.title,
       description: this.state.description,
       status: this.state.status,
@@ -66,7 +68,7 @@ class BookFormModal extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleSubmit} variant="primary" type="submit" value="sumbit">Submit
+            <Button onClick={(event) => this.handleSubmit(event)} variant="primary" type="submit" value="sumbit">Submit
             </Button>
             <Button onClick={this.props.handleClose} variant="secondary">Close
             </Button>

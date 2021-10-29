@@ -18,7 +18,9 @@ class App extends React.Component {
     this.state = {
       user: null,
       showModal: false,
-      newBook: null
+      newBook: null,
+      books: [],
+      showBooks: false
     };
   }
 
@@ -46,11 +48,36 @@ class App extends React.Component {
   }
 
   handleCreate = async (bookInfo) => {
-    const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo);
+
+    console.log(bookInfo);
+    const newBookResponse = await axios.post('http://localhost:3001/books', bookInfo);
+
 
     this.setState({
-      newBook: newBookResponse.data
+      newBook: newBookResponse.data,
+      showModal: false
     });
+    this.getBooks();
+  }
+
+  getBooks = async () => {
+    try {
+      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`)).data;
+      console.log(booksAPI);
+      this.setState({
+        books: booksAPI,
+        showBooks: true
+      });
+      console.log('BestBooks state', this.state);
+    }
+    catch (error) {
+      console.log(`There was an error ${error.message}`);
+    }
+  }
+
+  deleteBook = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_SERVER}books/${id}`);
+    this.getBooks();
   }
 
   render() {
@@ -62,12 +89,10 @@ class App extends React.Component {
             onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              <Main
-                newBook={this.state.newBook}
-                handleClose={this.handleClose}
-                handleShow={this.handleShow}
-                showModal={this.state.showModal}
-                onCreate={this.handleCreate} />
+
+              <BestBooks newBook={this.state.newBook} books={this.state.books} showBooks={this.state.showBooks} getBooks={this.getBooks} deleteBook={this.deleteBook} />
+              <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
+
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
