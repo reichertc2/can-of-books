@@ -19,7 +19,7 @@ class BestBooks extends React.Component {
 
   getBooks = async () => {
     try {
-      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}book`)).data;
+      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`)).data;
       console.log(booksAPI);
       this.setState({
         books: booksAPI,
