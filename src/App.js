@@ -54,7 +54,7 @@ class App extends React.Component {
   handleCreate = async (bookInfo) => {
 
     console.log(bookInfo);
-    const newBookResponse = await axios.post('http://localhost:3001/books', bookInfo);
+    const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo);
 
 
     this.setState({
