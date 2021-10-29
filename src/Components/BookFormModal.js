@@ -18,15 +18,14 @@ class BookFormModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(this.state.title);
-    this.props.onCreate({
-
+    let createdBook = {
       title: this.state.title,
       description: this.state.description,
       status: this.state.status,
       email: this.state.email
     };
+    console.log(this.state);
+
     this.props.onCreate(createdBook);
   }
 
@@ -36,7 +35,7 @@ class BookFormModal extends React.Component {
         <Button onClick={this.props.handleShow}>
           Add a book
         </Button>
-        <Modal show={this.props.showModal}>
+        <Modal show={this.props.showModal} style={{ color: 'black' }}>
           <Modal.Header>
             <Modal.Title>Add a book</Modal.Title>
           </Modal.Header>
