@@ -18,12 +18,14 @@ class BookFormModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onCreate({
+    // console.log('handlesubmit log', this.state);
+    let createdBook = {
       title: this.state.title,
       description: this.state.description,
       status: this.state.status,
-      email: this.state.email,
-    });
+      email: this.state.email
+    };
+    this.props.onCreate(createdBook);
   }
 
   render() {
@@ -48,13 +50,14 @@ class BookFormModal extends React.Component {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control onChange={(event) => this.setState({ status: event.target.value })} type="name" placeholder="Enter 'read' or 'unread'" as="select" />
-                <option></option>
-                <option value="5 STARS">5 of 5 Stars</option>
-                <option value="4 STARS">4 of 5 Stars</option>
-                <option value="3 STARS">3 of 5 Stars</option>
-                <option value="2 STARS">2 of 5 Stars</option>
-                <option value="1 STAR">1 of 5 Stars</option>
+                <Form.Control as="select" onChange={(event) => this.setState({ status: event.target.value })} type="name" placeholder="Enter 'read' or 'unread'" as="select" >
+                  <option></option>
+                  <option value="5 STARS">5 of 5 Stars</option>
+                  <option value="4 STARS">4 of 5 Stars</option>
+                  <option value="3 STARS">3 of 5 Stars</option>
+                  <option value="2 STARS">2 of 5 Stars</option>
+                  <option value="1 STAR">1 of 5 Stars</option>
+                </Form.Control>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEmail">
                 <Form.Label>Email</Form.Label>

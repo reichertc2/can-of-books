@@ -9,8 +9,6 @@ import {
 } from 'react-router-dom';
 import Main from './Components/Main.js';
 import Profile from './Components/Profile.js';
-import BookFormModal from './Components/BookFormModal';
-import BestBooks from './Components/BestBooks.js';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -48,7 +46,7 @@ class App extends React.Component {
   }
 
   handleCreate = async (bookInfo) => {
-    const newBookResponse = await axios.post('http://localhost:3001/books', bookInfo);
+    const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo);
 
     this.setState({
       newBook: newBookResponse.data
@@ -59,13 +57,18 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Header user={this.state.user} onLogout={this.logoutHandler} />
+          <Header
+            user={this.state.user}
+            onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              <BestBooks newBook={this.state.newBook} />
-              <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
+              <Main
+                newBook={this.state.newBook}
+                handleClose={this.handleClose}
+                handleShow={this.handleShow}
+                showModal={this.state.showModal}
+                onCreate={this.handleCreate} />
             </Route>
-            <Main />
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
               <Profile />
