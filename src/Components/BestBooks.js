@@ -19,13 +19,13 @@ class BestBooks extends React.Component {
 
   getBooks = async () => {
     try {
-      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`)).data;
-      console.log(booksAPI);
+      let booksAPI = await axios.get(`${process.env.REACT_APP_SERVER}books`);
+      // console.log('booksAPI', booksAPI.data);
       this.setState({
-        books: booksAPI,
+        books: booksAPI.data,
         showBooks: true
       });
-      console.log('BestBooks state', this.state);
+      // console.log('BestBooks state', this.state);
     }
     catch (error) {
       console.log(`There was an error ${error.message}`);
@@ -34,13 +34,13 @@ class BestBooks extends React.Component {
 
 
   render() {
-    console.log('this is state on BestBooks.js', this.state);
+    // console.log('this is state on BestBooks.js', this.state);
     /* TODO: render user's books in a Carousel */
 
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        {this.state.showBooks ? <Books books={this.state.books} /> : <h3>Books not found.</h3>} 
+        {this.state.showBooks ? <Books books={this.state.books} /> : <h3>Books not found.</h3>}
       </>
     );
   }
