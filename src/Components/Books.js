@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
 class Books extends React.Component {
@@ -15,6 +16,9 @@ class Books extends React.Component {
             <Carousel.Caption style={{color: 'black'}}>
               <h3>{el.title}</h3>
               <p>{el.description}</p>
+              <Button onClick={() => this.props.deleteBook(el._id)}>
+                Delete
+              </Button>
             </Carousel.Caption>
           </Carousel.Item>)}
       </Carousel>
