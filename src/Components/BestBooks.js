@@ -17,7 +17,7 @@ class BestBooks extends React.Component {
     return (
       <>
         <h2 style={{display:'inline-block'}}>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        {this.props.showBooks ? <Books books={this.props.books} deleteBook={this.props.deleteBook} /> : <h3>Books not found.</h3>}
+        {this.props.showBooks ? <Books books={this.props.books} deleteBook={this.props.deleteBook} handleUpdate={this.props.handleUpdate} /> : <h3>Books not found.</h3>}
       </>
     );
   }

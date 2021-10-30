@@ -1,6 +1,7 @@
 import React from 'react';
 import BestBooks from './BestBooks.js';
 import BookFormModal from './BookFormModal.js';
+import UpdateBook from './UpdateBook.js';
 
 class Main extends React.Component {
   render() {
@@ -16,8 +17,10 @@ class Main extends React.Component {
           books={this.props.books}
           showBooks={this.props.showBooks}
           getBooks={this.props.getBooks}
-          deleteBook={this.props.deleteBook} />
-
+          deleteBook={this.props.deleteBook}
+          updateBook={this.props.updateBook} 
+          handleUpdate={this.props.handleUpdate} /> 
+        <UpdateBook />
       </>
     );
   }
