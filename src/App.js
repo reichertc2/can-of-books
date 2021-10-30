@@ -12,6 +12,7 @@ import {
 import Profile from './Components/Profile.js';
 import axios from 'axios';
 import Main from './Components/Main.js';
+import UpdateBook from './Components/UpdateBook';
 
 
 
@@ -24,7 +25,9 @@ class App extends React.Component {
       showModal: false,
       newBook: null,
       books: [],
-      showBooks: false
+      showBooks: false,
+      showUpdateModal: false,
+      updatedBook: {}
     };
   }
 
@@ -48,6 +51,7 @@ class App extends React.Component {
   handleClose = () => {
     this.setState({
       showModal: false,
+      showUpdateModal: false
     });
   }
 
@@ -59,7 +63,7 @@ class App extends React.Component {
 
     this.setState({
       newBook: newBookResponse.data,
-      showModal: false
+      showModal: false,
     });
     this.getBooks();
   }
@@ -84,6 +88,14 @@ class App extends React.Component {
     this.getBooks();
   }
 
+  handleUpdate = () => {
+    // let updatedBook = this.props.updateBook();
+    console.log('this is', this.handleUpdate);
+    this.setState( {
+      showUpdateModal: true
+    });
+  }
+
   render() {
     return (
       <>
@@ -102,7 +114,8 @@ class App extends React.Component {
                 handleClose={this.handleClose}
                 handleShow={this.handleShow}
                 showModal={this.state.showModal}
-                onCreate={this.handleCreate} />
+                onCreate={this.handleCreate}
+                handleUpdate={this.handleUpdate} />
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
@@ -112,6 +125,7 @@ class App extends React.Component {
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>
+          {(this.state.showUpdateModal)?<UpdateBook showUpdateModal={this.state.showUpdateModal} handleClose={this.handleClose} updatedBook={this.state.updatedBook} />: '' }
           <Footer />
         </Router>
       </>
