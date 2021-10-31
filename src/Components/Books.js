@@ -27,11 +27,11 @@ class Books extends React.Component {
               <Carousel.Caption style={{ color: 'black', backgroundColor: 'transparent' }}>
                 <h3 style={{ backgroundColor: 'transparent' }} >{el.title}</h3>
                 <p style={{ backgroundColor: 'transparent' }}>{el.description}</p>
-                <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent' }} onClick={() => this.props.deleteBook(el._id)}>
-                  Delete
-                </Button>
-                <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent' }} onClick={this.props.handleUpdate}>
+                <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent' }} onClick={()=>{this.props.handleUpdate(el) }}>
                   Update
+                </Button>
+                <Button style={{ backgroundColor: '#db2b39', border: '1px solid transparent', margin: '5px' }} onClick={() => this.props.deleteBook(el._id)}>
+                  Delete
                 </Button>
               </Carousel.Caption>
             </Carousel.Item>)}
