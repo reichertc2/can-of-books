@@ -16,22 +16,25 @@ class UpdateBook extends React.Component {
     };
   }
 
- 
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log(`this is handleSubmit on UpdateBooks ${event.target.titleEntry.value}`);
     let createdBook = {
-      title: (event.target.title.value) ? event.target.title.value : this.state.title,
-      description: (event.target.description.value) ? event.target.description.value : this.state.description,
-      status: (event.target.status.value) ? event.target.status.value : this.state.status,
-      email: (event.target.email.value) ? event.target.email.value : this.state.email,
-      _id: this.state._id
+      title: (event.target.titleEntry.value) ? event.target.titleEntry.value : this.props.updatedBook.title,
+      description: (event.target.descriptionEntry.value) ? event.target.descriptionEntry.value : this.props.updatedBook.description,
+      status: (event.target.statusEntry.value) ? event.target.statusEntry.value : this.props.updatedBook.status,
+      email: (event.target.emailEntry.value) ? event.target.emailEntry.value : this.props.updatedBook.email,
+      _id: this.props.updatedBook._id
     };
-    console.log(this.state);
-    this.props.
+    // console.log(createdBook);
+    this.props.handleUpdate(createdBook);
+    this.props.handleClose();
   }
 
+  
   render() {
+    // console.log(this.props);
     return (
       <>
         <Modal show={this.props.showUpdateModal} style={{ color: 'black' }}>
@@ -40,17 +43,17 @@ class UpdateBook extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group className="mb-3" controlId="formTitle">
+              <Form.Group className="mb-3" >
                 <Form.Label>Title</Form.Label>
-                <Form.Control onChange={(event) => this.setState({ title: event.target.value })} type="name" placeholder="Enter title of book" />
+                <Form.Control onChange={(event) => this.setState({ title: event.target.value })} placeholder={this.props.updatedBook.title} type="text" id="titleEntry" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formDescription">
+              <Form.Group className="mb-3" >
                 <Form.Label>Description</Form.Label>
-                <Form.Control onChange={(event) => this.setState({ description: event.target.value })} type="name" placeholder="Enter book description" />
+                <Form.Control onChange={(event) => this.setState({ description: event.target.value })} placeholder={this.props.updatedBook.description} type="text" id="descriptionEntry" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formStatus">
+              <Form.Group className="mb-3" >
                 <Form.Label>Status</Form.Label>
-                <Form.Control as="select" onChange={(event) => this.setState({ status: event.target.value })} type="name" placeholder="Enter 'read' or 'unread'" as="select" >
+                <Form.Control as="select" onChange={(event) => this.setState({ status: event.target.value })} placeholder={this.props.updatedBook.status} type="text" id="statusEntry">
                   <option></option>
                   <option value="5 STARS">5 of 5 Stars</option>
                   <option value="4 STARS">4 of 5 Stars</option>
@@ -59,17 +62,17 @@ class UpdateBook extends React.Component {
                   <option value="1 STAR">1 of 5 Stars</option>
                 </Form.Control>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Group className="mb-3" >
                 <Form.Label>Email</Form.Label>
-                <Form.Control onChange={(event) => this.setState({ email: event.target.value })} type="name" placeholder="Enter your email" />
+                <Form.Control onChange={(event) => this.setState({ email: event.target.value })} placeholder={this.props.updatedBook.email} type="text" id="emailEntry" />
               </Form.Group>
+              <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent', width:'100%' }} type="submit" >Update</Button>
             </Form>
+            <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent', margin:'5px auto', width:'100%' }} onClick={this.props.handleClose} variant="secondary">Cancel</Button>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={(event) => this.handleUpdate(event)} variant="primary" type="submit" value="sumbit">Update
-            </Button>
-            <Button onClick={this.props.handleClose} variant="secondary">Cancel
-            </Button>
+
+
           </Modal.Footer>
         </Modal>
       </>

@@ -32,7 +32,7 @@ class BookFormModal extends React.Component {
   render() {
     return (
       <>
-        <Button style={{ backgroundColor: '#534d41' , border: '1px solid transparent', display:'inline-block'}} onClick={this.props.handleShow}>
+        <Button style={{ backgroundColor: '#534d41' , border: '1px solid transparent', display:'inline-block', margin:'5px 0px 5px 50%'}} onClick={this.props.handleShow}>
           Add a book
         </Button>
         <Modal show={this.props.showModal} style={{ color: 'black' }}>
@@ -67,9 +67,9 @@ class BookFormModal extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={(event) => this.handleSubmit(event)} variant="primary" type="submit" value="sumbit">Submit
+            <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent', margin:'5px auto', width:'100%' }} onClick={(event) => this.handleSubmit(event)} variant="primary" type="submit" value="sumbit">Submit
             </Button>
-            <Button onClick={this.props.handleClose} variant="secondary">Close
+            <Button style={{ backgroundColor: '#534d41', border: '1px solid transparent', margin:'5px auto', width:'100%' }} onClick={this.props.handleClose} variant="secondary">Close
             </Button>
           </Modal.Footer>
         </Modal>

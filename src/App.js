@@ -56,11 +56,8 @@ class App extends React.Component {
   }
 
   handleCreate = async (bookInfo) => {
-
     console.log(bookInfo);
     const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo);
-
-
     this.setState({
       newBook: newBookResponse.data,
       showModal: false,
@@ -71,12 +68,12 @@ class App extends React.Component {
   getBooks = async () => {
     try {
       let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`)).data;
-      console.log(booksAPI);
+      // console.log(booksAPI);
       this.setState({
         books: booksAPI,
         showBooks: true
       });
-      console.log('BestBooks state', this.state);
+      // console.log('BestBooks state', this.state);
     }
     catch (error) {
       console.log(`There was an error ${error.message}`);
@@ -88,12 +85,16 @@ class App extends React.Component {
     this.getBooks();
   }
 
-  handleUpdate = () => {
+  handleUpdate = async (el) => {
     // let updatedBook = this.props.updateBook();
-    console.log('this is', this.handleUpdate);
-    this.setState( {
-      showUpdateModal: true
+    console.log('this is handleUpdate', el);
+    this.setState({
+      showUpdateModal: true,
+      updatedBook: el
     });
+    console.log('this is handleUpdate-updatedBook', el._id);
+    await axios.put(`${process.env.REACT_APP_SERVER}books/${el._id}`, el);
+    this.getBooks();
   }
 
   render() {
@@ -125,7 +126,13 @@ class App extends React.Component {
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>
-          {(this.state.showUpdateModal)?<UpdateBook showUpdateModal={this.state.showUpdateModal} handleClose={this.handleClose} updatedBook={this.state.updatedBook} />: '' }
+          {(this.state.showUpdateModal) ?
+            <UpdateBook
+              showUpdateModal={this.state.showUpdateModal}
+              handleClose={this.handleClose}
+              updatedBook={this.state.updatedBook}
+              handleUpdate={this.handleUpdate}
+            /> : ''}
           <Footer />
         </Router>
       </>
