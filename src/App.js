@@ -13,6 +13,8 @@ import Profile from './Components/Profile.js';
 import axios from 'axios';
 import Main from './Components/Main.js';
 import UpdateBook from './Components/UpdateBook';
+import {withAuth0} from '@auth0/auth0-react'
+import Login from './Components/Login';
 
 
 
@@ -103,9 +105,13 @@ class App extends React.Component {
         <Router>
           <Header
             user={this.state.user}
-            onLogout={this.logoutHandler} />
+            onLogout={this.logoutHandler} 
+            auth={this.props.auth0.authenticated}
+            />
+
           <Switch>
             <Route exact path="/">
+              {this.props.auth0.isAuthenticated ? 
               <Main
                 newBook={this.state.newBook}
                 books={this.state.books}
@@ -117,6 +123,8 @@ class App extends React.Component {
                 showModal={this.state.showModal}
                 onCreate={this.handleCreate}
                 handleUpdate={this.handleUpdate} />
+                : <Login />
+              }
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             <Route exact path="/profile">
@@ -140,4 +148,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
