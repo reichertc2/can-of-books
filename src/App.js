@@ -29,7 +29,8 @@ class App extends React.Component {
       books: [],
       showBooks: false,
       showUpdateModal: false,
-      updatedBook: {}
+      updatedBook: {},
+      jwt:''
     };
   }
 
@@ -59,7 +60,7 @@ class App extends React.Component {
 
   handleCreate = async (bookInfo) => {
     console.log(bookInfo);
-    const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo);
+    const newBookResponse = await axios.post(`${process.env.REACT_APP_SERVER}books`, bookInfo,(this.state.jwt));
     this.setState({
       newBook: newBookResponse.data,
       showModal: false,
@@ -69,7 +70,7 @@ class App extends React.Component {
 
   getBooks = async () => {
     try {
-      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`)).data;
+      let booksAPI = await (await axios.get(`${process.env.REACT_APP_SERVER}books`,(this.state.jwt))).data;
       // console.log(booksAPI);
       this.setState({
         books: booksAPI,
@@ -83,7 +84,7 @@ class App extends React.Component {
   }
 
   deleteBook = async (id) => {
-    await axios.delete(`${process.env.REACT_APP_SERVER}books/${id}`);
+    await axios.delete(`${process.env.REACT_APP_SERVER}books/${id}`, (this.state.jwt));
     this.getBooks();
   }
 
@@ -97,6 +98,21 @@ class App extends React.Component {
     console.log('this is handleUpdate-updatedBook', el._id);
     await axios.put(`${process.env.REACT_APP_SERVER}books/${el._id}`, el);
     this.getBooks();
+  }
+
+  jwtFuntion= async() => {
+    console.log('didmount');
+    //JWT
+    let getIdToken = await this.props.auth0.getIdTokenClaims();
+    let jwt = getIdToken.__raw
+
+    // console.log(jwt);
+    let config = {
+      headers: { "Authorization": `Bearer ${jwt}` }
+    }
+    this.setState({
+      jwt: config
+    })
   }
 
   render() {
@@ -123,7 +139,10 @@ class App extends React.Component {
                   handleShow={this.handleShow}
                   showModal={this.state.showModal}
                   onCreate={this.handleCreate}
-                  handleUpdate={this.handleUpdate} />
+                  handleUpdate={this.handleUpdate} 
+                  jwt={this.state.jwt}
+                  jwtFuntion={this.jwtFuntion}      
+                  />
                 : <Login />
               }
             </Route>

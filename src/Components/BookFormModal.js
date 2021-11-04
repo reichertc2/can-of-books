@@ -51,7 +51,7 @@ class BookFormModal extends React.Component {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control as="select" onChange={(event) => this.setState({ status: event.target.value })} type="name" placeholder="Enter 'read' or 'unread'" as="select" >
+                <Form.Control as="select" onChange={(event) => this.setState({ status: event.target.value })} type="name" placeholder="Enter 'read' or 'unread'" >
                   <option></option>
                   <option value="5 STARS">5 of 5 Stars</option>
                   <option value="4 STARS">4 of 5 Stars</option>

@@ -8,6 +8,7 @@ class BestBooks extends React.Component {
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
   componentDidMount() {
     this.props.getBooks();
+    this.props.jwtFuntion();
   }
 
   render() {
