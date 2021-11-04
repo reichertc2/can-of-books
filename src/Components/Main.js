@@ -21,7 +21,9 @@ class Main extends React.Component {
           getBooks={this.props.getBooks}
           deleteBook={this.props.deleteBook}
           updateBook={this.props.updateBook}
-          handleUpdate={this.props.handleUpdate} />
+          handleUpdate={this.props.handleUpdate}
+          jwt={this.props.jwt}
+          jwtFuntion={this.props.jwtFuntion}  />
       </>
     );
   }
