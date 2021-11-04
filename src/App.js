@@ -13,7 +13,7 @@ import Profile from './Components/Profile.js';
 import axios from 'axios';
 import Main from './Components/Main.js';
 import UpdateBook from './Components/UpdateBook';
-import {withAuth0} from '@auth0/auth0-react'
+import { withAuth0 } from '@auth0/auth0-react'
 import Login from './Components/Login';
 
 
@@ -100,36 +100,40 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.auth0)
     return (
       <>
         <Router>
           <Header
             user={this.state.user}
-            onLogout={this.logoutHandler} 
+            onLogout={this.logoutHandler}
             auth={this.props.auth0.authenticated}
-            />
+          />
 
           <Switch>
             <Route exact path="/">
-              {this.props.auth0.isAuthenticated ? 
-              <Main
-                newBook={this.state.newBook}
-                books={this.state.books}
-                showBooks={this.state.showBooks}
-                getBooks={this.getBooks}
-                deleteBook={this.deleteBook}
-                handleClose={this.handleClose}
-                handleShow={this.handleShow}
-                showModal={this.state.showModal}
-                onCreate={this.handleCreate}
-                handleUpdate={this.handleUpdate} />
+              {this.props.auth0.isAuthenticated ?
+                <Main
+                  newBook={this.state.newBook}
+                  books={this.state.books}
+                  showBooks={this.state.showBooks}
+                  getBooks={this.getBooks}
+                  deleteBook={this.deleteBook}
+                  handleClose={this.handleClose}
+                  handleShow={this.handleShow}
+                  showModal={this.state.showModal}
+                  onCreate={this.handleCreate}
+                  handleUpdate={this.handleUpdate} />
                 : <Login />
               }
             </Route>
             {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
+            
+              <Route exact path="/profile">
+              {this.props.auth0.isAuthenticated ?
+                <Profile />: <h4>Profile page is not available. Please log in.</h4>}
+              </Route> 
+
             <Route path="/create">
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
